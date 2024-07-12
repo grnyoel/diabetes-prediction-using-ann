@@ -15,7 +15,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # Pastikan untuk menggunakan path absolut ke file .h5
-model_path = r'E:\UAS_AI\diabetes_model1.h5'
+model_path = 'diabetes_model1.h5'
 
 # Muat model
 model = tf.keras.models.load_model(model_path)
