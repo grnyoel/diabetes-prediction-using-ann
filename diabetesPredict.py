@@ -1,6 +1,15 @@
-
 import streamlit as st
-import tensorflow as tf
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Install TensorFlow
+try:
+    import tensorflow as tf
+except ImportError:
+    install('tensorflow==2.15.0')
+    import tensorflow as tf
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
