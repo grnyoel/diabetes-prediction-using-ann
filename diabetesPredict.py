@@ -17,8 +17,15 @@ from sklearn.preprocessing import StandardScaler
 # Pastikan untuk menggunakan path absolut ke file .h5
 model_path = 'diabetes_model1.h5'
 
-# Muat model
-model = tf.keras.models.load_model(model_path)
+# Log the model path to verify
+st.write(f"Model path: {model_path}")
+
+# Try loading the model and catch any exceptions
+try:
+    model = tf.keras.models.load_model(model_path)
+    st.write("Model loaded successfully.")
+except Exception as e:
+    st.error(f"Failed to load model: {e}")
 
 # # Load the saved model
 # model = tf.keras.models.load_model('E:\UAS_AI\diabetes_model1.h5')
