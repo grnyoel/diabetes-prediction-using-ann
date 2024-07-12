@@ -43,11 +43,32 @@ def predict_diabetes(input_data):
         try:
             prediction = model.predict(input_data)
             return prediction
+        except OSError as e:
+            st.error(f"OS error saat memprediksi: {e}")
+        except ValueError as e:
+            st.error(f"Value error saat memprediksi: {e}")
         except Exception as e:
             st.error(f"Terjadi kesalahan saat memprediksi: {e}")
             return None
     else:
         st.warning("Model tidak berhasil dimuat. Tidak bisa melakukan prediksi.")
+
+# # Function untuk prediksi diabetes dengan penanganan eksepsi
+# def predict_diabetes(input_data):
+#     if model:
+#         # Normalize the input data
+#         scaler = StandardScaler()
+#         input_data = scaler.fit_transform(input_data)
+        
+#         # Make prediction
+#         try:
+#             prediction = model.predict(input_data)
+#             return prediction
+#         except Exception as e:
+#             st.error(f"Terjadi kesalahan saat memprediksi: {e}")
+#             return None
+#     else:
+#         st.warning("Model tidak berhasil dimuat. Tidak bisa melakukan prediksi.")
 
 
 # # Pastikan untuk menggunakan path absolut ke file .h5
