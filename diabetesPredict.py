@@ -14,18 +14,36 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-# Pastikan untuk menggunakan path absolut ke file .h5
-model_path = 'diabetes_model1.h5'
+# Nama file model
+model_filename = 'diabetes_model1.h5'
 
-# Log the model path to verify
-st.write(f"Model path: {model_path}")
+# Fungsi untuk memuat model dengan penanganan eksepsi
+def load_model(model_filename):
+    try:
+        model = tf.keras.models.load_model(model_filename)
+        st.write("Model berhasil dimuat.")
+        return model
+    except OSError as e:
+        st.error(f"Gagal memuat model: {e}")
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat memuat model: {e}")
+    return None
 
-# Try loading the model and catch any exceptions
-try:
-    model = tf.keras.models.load_model(model_path)
-    st.write("Model loaded successfully.")
-except Exception as e:
-    st.error(f"Failed to load model: {e}")
+# Muat model
+model = load_model(model_filename)
+
+# # Pastikan untuk menggunakan path absolut ke file .h5
+# model_path = 'diabetes_model1.h5'
+
+# # Log the model path to verify
+# st.write(f"Model path: {model_path}")
+
+# # Try loading the model and catch any exceptions
+# try:
+#     model = tf.keras.models.load_model(model_path)
+#     st.write("Model loaded successfully.")
+# except Exception as e:
+#     st.error(f"Failed to load model: {e}")
 
 # # Load the saved model
 # model = tf.keras.models.load_model('E:\UAS_AI\diabetes_model1.h5')
