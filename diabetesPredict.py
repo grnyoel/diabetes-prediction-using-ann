@@ -35,9 +35,12 @@ def predict_diabetes(input_data):
     # Normalize the input data
     scaler = StandardScaler()
     input_data = scaler.fit_transform(input_data)
-    # Predict
-    prediction = model.predict(input_data)
-    return prediction
+    try:
+        prediction = model.predict(input_data)
+        return prediction
+    except Exception as e:
+        st.error(f"Prediction error: {e}")
+        return None
 
 # Streamlit interface
 st.title("Diabetes Prediction")
