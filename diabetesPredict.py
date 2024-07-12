@@ -32,6 +32,24 @@ def load_model(model_filename):
 # Muat model
 model = load_model(model_filename)
 
+# Function untuk prediksi diabetes dengan penanganan eksepsi
+def predict_diabetes(input_data):
+    if model:
+        # Normalize the input data
+        scaler = StandardScaler()
+        input_data = scaler.fit_transform(input_data)
+        
+        # Make prediction
+        try:
+            prediction = model.predict(input_data)
+            return prediction
+        except Exception as e:
+            st.error(f"Terjadi kesalahan saat memprediksi: {e}")
+            return None
+    else:
+        st.warning("Model tidak berhasil dimuat. Tidak bisa melakukan prediksi.")
+
+
 # # Pastikan untuk menggunakan path absolut ke file .h5
 # model_path = 'diabetes_model1.h5'
 
@@ -49,16 +67,16 @@ model = load_model(model_filename)
 # model = tf.keras.models.load_model('E:\UAS_AI\diabetes_model1.h5')
 
 # Define a function for prediction
-def predict_diabetes(input_data):
-    # Normalize the input data
-    scaler = StandardScaler()
-    input_data = scaler.fit_transform(input_data)
-    try:
-        prediction = model.predict(input_data)
-        return prediction
-    except Exception as e:
-        st.error(f"Prediction error: {e}")
-        return None
+# def predict_diabetes(input_data):
+#     # Normalize the input data
+#     scaler = StandardScaler()
+#     input_data = scaler.fit_transform(input_data)
+#     try:
+#         prediction = model.predict(input_data)
+#         return prediction
+#     except Exception as e:
+#         st.error(f"Prediction error: {e}")
+#         return None
 
 # Streamlit interface
 st.title("Diabetes Prediction")
