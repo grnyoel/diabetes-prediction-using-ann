@@ -43,8 +43,7 @@ def predict_diabetes(input_data):
         try:
             prediction = model.predict(input_data)
             return prediction
-        except OSError as e:
-            st.error(f"OS error saat memprediksi: {e}")
+        
         except ValueError as e:
             st.error(f"Value error saat memprediksi: {e}")
         except Exception as e:
